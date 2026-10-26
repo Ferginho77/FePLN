@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
@@ -13,6 +12,7 @@ const pageTitles = {
   '/dashboard': 'Dashboard',
   '/Proyek': 'Proyek',
   '/anggaran': 'Anggaran',
+  '/Persekot Dinas': 'Persekot Dinas',
   '/Perizinan': 'Perizinan',
   '/Pengadaan Tanah': 'Pengadaan Tanah',
   '/Kompensasi ROW': 'Kompensasi ROW',
@@ -73,9 +73,52 @@ export default function Header({
     navigate('/login', { replace: true });
   };
 
-  return (
-    <header className="app-header">
-      <div className="header-left">
+ return (
+  <header className="app-header">
+    <div className="header-left">
+      {/* Hamburger desktop dan mobile di sebelah kiri judul */}
+      <button
+        type="button"
+        className="icon-btn desktop-menu-toggle"
+        aria-label={
+          desktopSidebarOpen ? 'Ciutkan navigasi' : 'Buka navigasi'
+        }
+        aria-expanded={desktopSidebarOpen}
+        aria-controls="desktop-navigation"
+        onClick={() => setDesktopSidebarOpen((open) => !open)}
+      >
+        <Menu aria-hidden="true" />
+      </button>
+
+      <button
+        type="button"
+        className="icon-btn mobile-menu-toggle"
+        aria-label={mobileMenuOpen ? 'Tutup navigasi' : 'Buka navigasi'}
+        aria-expanded={mobileMenuOpen}
+        aria-controls="mobile-navigation"
+        onClick={() => setMobileMenuOpen((open) => !open)}
+      >
+        {mobileMenuOpen ? (
+          <X aria-hidden="true" />
+        ) : (
+          <Menu aria-hidden="true" />
+        )}
+      </button>
+
+      <div className="page-heading">
+        <h1 className="page-title">{pageTitle}</h1>
+        <p className="page-subtitle">
+          Monitoring Proyek SUTT &amp; GI
+        </p>
+      </div>
+    </div>
+
+    <div className="header-right">
+      {/* Pertahankan account-menu-wrapper beserta dropdown akun
+          dan tombol Logout yang sudah ada di sini. */}
+
+
+        {/* Tombol drawer tetap tersedia di mobile, tetapi bukan di kiri judul */}
         <button
           type="button"
           className="icon-btn mobile-menu-toggle"
@@ -83,6 +126,7 @@ export default function Header({
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-navigation"
           onClick={() => setMobileMenuOpen((open) => !open)}
+          title={mobileMenuOpen ? 'Tutup navigasi' : 'Buka navigasi'}
         >
           {mobileMenuOpen ? (
             <X aria-hidden="true" />
@@ -91,34 +135,7 @@ export default function Header({
           )}
         </button>
 
-        <button
-          type="button"
-          className="icon-btn desktop-menu-toggle"
-          aria-label={
-            desktopSidebarOpen
-              ? 'Ciutkan navigasi'
-              : 'Buka navigasi'
-          }
-          aria-expanded={desktopSidebarOpen}
-          aria-controls="desktop-navigation"
-          onClick={() => setDesktopSidebarOpen((open) => !open)}
-        >
-          <Menu aria-hidden="true" />
-        </button>
-
-        <div className="page-heading">
-          <h1 className="page-title">{pageTitle}</h1>
-          <p className="page-subtitle">
-            Monitoring Proyek SUTT &amp; GI
-          </p>
-        </div>
-      </div>
-
-      <div className="header-right">
-        <div
-          className="account-menu-wrapper"
-          ref={accountMenuRef}
-        >
+        <div className="account-menu-wrapper" ref={accountMenuRef}>
           <button
             type="button"
             className="account-trigger"
@@ -127,6 +144,8 @@ export default function Header({
             aria-haspopup="menu"
             onClick={() => setAccountMenuOpen((open) => !open)}
           >
+            <UserRound className="account-trigger-icon" aria-hidden="true" />
+
             <span className="account-name">Akun Pengguna</span>
 
             <ChevronDown
@@ -143,7 +162,8 @@ export default function Header({
                 <span className="account-avatar">
                   <UserRound aria-hidden="true" />
                 </span>
-                <span className="account-name">
+
+                <span className="account-dropdown-name">
                   Akun Pengguna
                 </span>
               </div>

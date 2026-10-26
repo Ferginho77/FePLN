@@ -8,24 +8,22 @@ import {
   Map,
   Banknote,
   Locate,
-  Wallet,
 } from "lucide-react";
 
 const mainItems = [
   { path: "/dashboard", name: "Dashboard", icon: LayoutDashboard },
-  { path: "/Proyek", name: "Proyek", icon: Locate },
+  { path: "/proyek", name: "Proyek", icon: Locate },
 ];
 
 const financeItems = [
   { path: "/anggaran", name: "Anggaran", icon: Banknote },
-  { path: "/Persekot Dinas", name: "Persekot Dinas", icon: Wallet },
 ];
 
 const workItems = [
-  { path: "/Perizinan", name: "Perizinan", icon: FileText },
-  { path: "/Pengadaan Tanah", name: "Pengadaan Tanah", icon: Map },
-  { path: "/Kompensasi ROW", name: "Kompensasi ROW", icon: Coins },
-  { path: "/Sertifikasi", name: "Sertifikasi", icon: Award },
+  { path: "/perizinan", name: "Perizinan", icon: FileText },
+  { path: "/pengadaan", name: "Pengadaan Tanah", icon: Map },
+  { path: "/row", name: "Kompensasi ROW", icon: Coins },
+  { path: "/sertifikasi", name: "Sertifikasi", icon: Award },
 ];
 
 function NavigationGroup({ title, items, collapsed = false, onNavigate }) {
