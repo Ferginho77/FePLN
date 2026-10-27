@@ -1,4 +1,5 @@
-const APP_API = "http://localhost:5001/api/bidang";
+// const APP_API = "http://localhost:5001/api/bidang";
+const APP_API = "https://gopln.vercel.app/bidang";
 
 export const GetBidang = async () => {
     try {

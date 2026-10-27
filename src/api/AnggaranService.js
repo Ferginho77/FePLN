@@ -1,4 +1,5 @@
-const APP_API = "http://localhost:5001/api/anggaran";
+// const APP_API = "http://localhost:5001/anggaran";
+const APP_API = "https://gopln.vercel.app/anggaran";
 
 export const GetAnggaran = async () => {
      try {
